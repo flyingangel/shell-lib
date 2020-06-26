@@ -1,0 +1,7 @@
+#!/bin/bash
+#shell colors
+COLOR_NONE="\033[0m"
+COLOR_GREEN="\033[32m"
+COLOR_CYAN="\033[36m"
+COLOR_YELLOW="\033[33m"
+COLOR_RED="\033[31m"
