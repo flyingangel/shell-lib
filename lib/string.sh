@@ -1,60 +1,28 @@
 #!/bin/bash
 
-#get base64
-#Usage base64encode return input
-function base64encode() {
-	eval $1=$(echo $2 | base64)
+#Get base64
+#string.base64encode result input
+function string.base64encode() {
+	eval "$1=$(echo "$2" | base64)"
 }
 
-#get base64
-#Usage base64decode return input
-function base64decode() {
-	eval $1=$(echo $2 | base64 --decode)
+#Get base64
+#string.base64decode result input
+function string.base64decode() {
+	eval "$1=$(echo "$2" | base64 --decode)"
 }
 
-#display a readline with *
-#Usage readLineWithStar return display_string
-function readLineWithStar() {
-	local input prompt char charcount
-
-	unset input
-	prompt=$2
-
-	while IFS= read -p "$prompt" -r -s -n 1 char; do
-		if [[ $char == $'\0' ]]; then
-			break
-		fi
-		# Backspace
-		if [[ $char == $'\177' ]]; then
-			if [ $charcount -gt 0 ]; then
-				charcount=$((charcount - 1))
-				prompt=$'\b \b'
-				input="${input%?}"
-			else
-				prompt=''
-			fi
-		else
-			charcount=$((charcount + 1))
-			prompt='*'
-			input+="$char"
-		fi
-	done
-
-	#new line
-	echo >/dev/tty
-
-	eval $1=$input
-}
-
-#implode , "${FOO[@]}"
-function implode() {
+#Implode an array into a string with a choosen separator
+#string.implode , "${FOO[@]}"
+function string.implode() {
 	local IFS="$1"
 	shift
 	echo "$*"
 }
 
-#explode , string
-function explode() {
+#Explode string into an array with a choosen separator
+#string.explode , string
+function string.explode() {
 	local IFS="$1"
 
 	#no delimiter or empty

@@ -6,8 +6,8 @@ Library of useful shell functions
 
 Include this GIT project as submodule
 
-    git submodule add https://github.com/flyingangel/shell-lib.git lib/shell-lib
+    git submodule add https://github.com/flyingangel/shell-lib.git shell_modules/shell-lib
 
 In a shell script, load functions into memory
 
-    source lib/shell-lib/autoload.sh
+    source shell_modules/shell-lib/autoload.sh

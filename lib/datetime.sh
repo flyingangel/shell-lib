@@ -1,12 +1,19 @@
 #!/bin/bash
 
-#Usage: get_current_date date [for_file]
-function get_current_date {
-    date=$(date '+%F_%T');
+#Get the current date and time
+#date.datetime result
+function date.datetime() {
+    eval "$1=$(date '+%F_%T')"
+}
 
-    if $2; then
-        date=${date//:/\-}
-    fi
+#Get the current date
+#date.date result
+function date.date() {
+    eval "$1=$(date '+%F')"
+}
 
-    eval $1=$date
+#Get the current time
+#date.time result
+function date.time() {
+    eval "$1=$(date '+%T')"
 }
