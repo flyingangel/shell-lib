@@ -79,12 +79,12 @@ function install_manpage() {
 #uninstall_binary name
 function uninstall_binary() {
     log.info "Remove /usr/local/bin/$1"
-    rm -f "/usr/local/bin/$1"
+    rm -f "/usr/local/bin/$1" || return 1
 }
 
 #Uninstall man page
 #uninstall_manpage name
 function uninstall_manpage() {
     log.info "Remove /usr/local/man/man1/$1"
-    rm -f "/usr/local/man/man1/$1"
+    rm -f "/usr/local/man/man1/$1" || return 1
 }

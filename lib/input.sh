@@ -7,7 +7,7 @@ function input.read() {
 
 	read -rp "$2" input
 
-	eval "$1=$input"
+	eval "$1=\$input"
 }
 
 #Display a readline with *
@@ -41,7 +41,7 @@ function input.read_secret() {
 	#new line
 	echo >/dev/tty
 
-	eval "$1=$input"
+	eval "$1=\$input"
 }
 
 #Ask for user if he should continue some operation

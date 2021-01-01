@@ -3,23 +3,43 @@
 #log.[type] "string"
 
 function log.success() {
-    echo -e "[$(date '+%T')] ${COLOR_GREEN}$1${COLOR_NONE}"
+    local input
+    [[ ! -t 0 ]] && input=$(cat /dev/stdin) || input=$1
+    echo -e "[$(date '+%T')] ${COLOR_GREEN}$input${COLOR_NONE}"
 }
 
 function log.warning() {
-    echo -e "[$(date '+%T')] ${COLOR_MAGENTA}$1${COLOR_NONE}"
+    local input
+    [[ ! -t 0 ]] && input=$(cat /dev/stdin) || input=$1
+    echo -e "[$(date '+%T')] ${COLOR_MAGENTA}$input${COLOR_NONE}"
 }
 
 function log.error() {
-    echo -e "[$(date '+%T')] ${COLOR_RED}$1${COLOR_NONE}"
+    local input
+    [[ ! -t 0 ]] && input=$(cat /dev/stdin) || input=$1
+    echo -e "[$(date '+%T')] ${COLOR_RED}$input${COLOR_NONE}"
+
+    #exit if argument 2 given
+    if [[ $2 == true ]]; then
+        exit 1
+    fi
 }
 
 function log.fatal() {
-    echo -e "${COLOR_RED}$1${COLOR_NONE}"
+    local input
+    [[ ! -t 0 ]] && input=$(cat /dev/stdin) || input=$1
+    echo -e "${COLOR_RED}$input${COLOR_NONE}"
+
+    #exit if argument 2 given
+    if [[ $2 == true ]]; then
+        exit 1
+    fi
 }
 
 function log.info() {
-    echo -e "[$(date '+%T')] ${COLOR_GRAY}$1${COLOR_NONE}"
+    local input
+    [[ ! -t 0 ]] && input=$(cat /dev/stdin) || input=$1
+    echo -e "[$(date '+%T')] ${COLOR_GRAY}$input${COLOR_NONE}"
 }
 
 function log.newline() {
@@ -27,5 +47,18 @@ function log.newline() {
 }
 
 function log.header() {
-    echo -e "${COLOR_YELLOW}$1${COLOR_NONE}"
+    local input
+    [[ ! -t 0 ]] && input=$(cat /dev/stdin) || input=$1
+    echo -e "${COLOR_YELLOW}$input${COLOR_NONE}"
+}
+
+function log.finish() {
+    local input
+    [[ ! -t 0 ]] && input=$(cat /dev/stdin) || input=$1
+    echo -e "${COLOR_GREEN}$input${COLOR_NONE}"
+
+    #exit if argument 2 given
+    if [[ $2 == true ]]; then
+        exit 0
+    fi
 }
