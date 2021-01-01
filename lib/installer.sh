@@ -35,7 +35,7 @@ function install_binary() {
         return 1
     fi
 
-    log.success "Command $target created"
+    log.info "Command $target created"
 }
 
 #install man page for the binary
@@ -72,7 +72,7 @@ function install_manpage() {
         return 1
     fi
 
-    log.success "Manpage $target created"
+    log.info "Manpage $target created"
 }
 
 #Uninstall binary file
