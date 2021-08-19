@@ -18,7 +18,7 @@ function file.size.readable() {
 
     #if less than 1 Mb, convert to Kb
     if [ "$fs" -lt 1024 ]; then
-        fs="$fs b"
+        fs="$fs' 'b"
     elif [ "$fs" -lt 1048576 ]; then
         fs="$((fs / 1024))' 'Kb"
     else
