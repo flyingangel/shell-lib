@@ -83,3 +83,41 @@ function is.linux() {
     #shellcheck disable=SC2003
     [[ $(uname -s) == Linux* ]]
 }
+
+#Stream a file depending on its extension
+#file.stream filename
+function file.stream() {
+    if [[ "$1" == *.gz ]]; then
+        local gunzip="gunzip -c"
+
+        if command -v pigz >/dev/null; then
+            gunzip="pigz -dc"
+        fi
+
+        $gunzip -- "$1"
+    elif [[ "$1" == *.zip ]]; then
+        unzip -p -- "$1"
+    else
+        cat -- "$1"
+    fi
+}
+
+#Gzip stream using pigz when available, otherwise gzip.
+#file.gzip [args]
+function file.gzip() {
+    local cmd
+
+    command -v pigz >/dev/null && cmd="pigz" || cmd="gzip"
+
+    "$cmd" "$@"
+}
+
+#Gunzip stream using pigz when available, otherwise gunzip.
+#file.gunzip [args]
+function file.gunzip() {
+    local cmd
+
+    command -v pigz >/dev/null && cmd="pigz -d" || cmd="gunzip"
+
+    "$cmd" "$@"
+}
