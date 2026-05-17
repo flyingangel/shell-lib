@@ -109,7 +109,7 @@ function file.gzip() {
 
     command -v pigz >/dev/null && cmd="pigz" || cmd="gzip"
 
-    "$cmd" "$@"
+    $cmd "$@"
 }
 
 #Gunzip stream using pigz when available, otherwise gunzip.
@@ -119,5 +119,5 @@ function file.gunzip() {
 
     command -v pigz >/dev/null && cmd="pigz -d" || cmd="gunzip"
 
-    "$cmd" "$@"
+    $cmd "$@"
 }
